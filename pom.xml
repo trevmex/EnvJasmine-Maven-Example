@@ -14,7 +14,14 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-  </dependencies>
+    <dependency>
+      <groupId>org.mozilla.javascript.tools</groupId>
+      <artifactId>shell</artifactId>
+      <version>1.7R2</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/src/test/javascript/envjasmine/lib/rhino/js.jar</systemPath>
+    </dependency>
+   </dependencies>
   <build>
     <plugins>
       <plugin>
@@ -26,12 +33,22 @@
             <id>Jasmine Tests</id>
             <phase>test</phase>
             <goals>
-              <goal>exec</goal>
+              <goal>java</goal>
             </goals>
           </execution>
         </executions>
         <configuration>
-          <executable>${project.basedir}/src/test/javascript/EnvJasmine/bin/run_all_tests.sh</executable>
+          <mainClass>org.mozilla.javascript.tools.shell.Main</mainClass>
+          <arguments>
+            <argument>${basedir}/src/test/javascript/EnvJasmine/lib/envjasmine.js</argument>
+            <argument>${basedir}/src/test/javascript/EnvJasmine</argument>
+          </arguments>
+          <systemProperties>
+            <systemProperty>
+              <key>user.timezone</key>
+              <value>"US/Eastern"</value>
+            </systemProperty>
+          </systemProperties>
         </configuration>
       </plugin>
     </plugins>
