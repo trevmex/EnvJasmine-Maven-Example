@@ -19,7 +19,7 @@
       <artifactId>shell</artifactId>
       <version>1.7R2</version>
       <scope>system</scope>
-      <systemPath>${basedir}/src/test/javascript/envjasmine/lib/rhino/js.jar</systemPath>
+      <systemPath>${basedir}/src/test/javascript/EnvJasmine/lib/rhino/js.jar</systemPath>
     </dependency>
    </dependencies>
   <build>
@@ -33,22 +33,22 @@
             <id>Jasmine Tests</id>
             <phase>test</phase>
             <goals>
-              <goal>java</goal>
+              <goal>exec</goal>
             </goals>
           </execution>
         </executions>
         <configuration>
-          <mainClass>org.mozilla.javascript.tools.shell.Main</mainClass>
+          <executable>java</executable>
           <arguments>
+            <argument>-Duser.timezone="US/Eastern"</argument>
+            <argument>-classpath</argument>
+            <classpath>
+              <dependency>org.mozilla.javascript.tools:shell</dependency>
+            </classpath>
+            <argument>org.mozilla.javascript.tools.shell.Main</argument>
             <argument>${basedir}/src/test/javascript/EnvJasmine/lib/envjasmine.js</argument>
             <argument>${basedir}/src/test/javascript/EnvJasmine</argument>
           </arguments>
-          <systemProperties>
-            <systemProperty>
-              <key>user.timezone</key>
-              <value>"US/Eastern"</value>
-            </systemProperty>
-          </systemProperties>
         </configuration>
       </plugin>
     </plugins>
