@@ -39,19 +39,30 @@
         </executions>
         <configuration>
           <executable>java</executable>
+          <classpathScope>test</classpathScope>
+          <skip>${maven.test.skip}</skip>
           <arguments>
             <argument>-Duser.timezone="US/Eastern"</argument>
+            <argument>-Dfile.encoding=utf-8</argument>
             <argument>-classpath</argument>
             <classpath>
               <dependency>org.mozilla.javascript.tools:shell</dependency>
             </classpath>
             <argument>org.mozilla.javascript.tools.shell.Main</argument>
             <argument>${basedir}/src/test/javascript/EnvJasmine/lib/envjasmine.js</argument>
-            <argument>UNIX</argument>
-            <argument>${basedir}/src/test/javascript/EnvJasmine</argument>
+            <argument>--environment=UNIX</argument>
+            <argument>--suppressConsoleMsgs</argument>
+            <argument>${envjasmineColor}</argument>
+            <argument>--incrementalOutput</argument>
+            <argument>--rootDir=${basedir}/src/test/javascript/EnvJasmine</argument>
+            <argument>--testDir=${basedir}/src/test/javascript/EnvJasmine</argument>
+            <argument>--configFile=${basedir}/src/test/javascript/EnvJasmine/include/dependencies.js</argument>
           </arguments>
         </configuration>
       </plugin>
     </plugins>
   </build>
+  <properties>
+    <envjasmineColor>--disableColor</envjasmineColor>
+  </properties>
 </project>
