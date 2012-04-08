@@ -50,7 +50,7 @@
             </classpath>
             <argument>org.mozilla.javascript.tools.shell.Main</argument>
             <argument>${basedir}/src/test/javascript/EnvJasmine/lib/envjasmine.js</argument>
-            <argument>--environment=UNIX</argument>
+            <argument>--environment=WIN</argument>
             <argument>--suppressConsoleMsgs</argument>
             <argument>${envjasmineColor}</argument>
             <argument>--incrementalOutput</argument>
